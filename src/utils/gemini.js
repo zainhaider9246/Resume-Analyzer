@@ -53,7 +53,7 @@ Respond ONLY with a valid JSON object in this exact format (no markdown, no back
       contents: [{ parts: [{ text: prompt }] }],
       generationConfig: {
         temperature: 0.3,
-        maxOutputTokens: 2048,
+        maxOutputTokens: 8192,
       },
     }),
   });
@@ -67,6 +67,9 @@ Respond ONLY with a valid JSON object in this exact format (no markdown, no back
   const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
   if (!text) throw new Error('No response from Gemini');
 
-  const cleaned = text.replace(/```json|```/g, '').trim();
-  return JSON.parse(cleaned);
+ const cleaned = text.replace(/```json|```/g, '').trim();
+// Extract JSON object if extra text exists
+const jsonMatch = cleaned.match(/\{[\s\S]*\}/);
+if (!jsonMatch) throw new Error('No valid JSON in response');
+return JSON.parse(jsonMatch[0]);
 };
