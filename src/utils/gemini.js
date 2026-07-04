@@ -1,5 +1,10 @@
-const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent';  const prompt = `
-You are an expert ATS (Applicant Tracking System) resume analyzer and career coach.
+
+const GEMINI_API_URL =
+  'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent';
+
+export const analyzeResume = async (resumeText, jobDescription, apiKey) => {
+  const prompt = `
+You are an expert ATS resume analyzer and career coach.
 
 Analyze the following resume against the job description and provide a detailed analysis.
 
@@ -19,10 +24,10 @@ Respond ONLY with a valid JSON object in this exact format (no markdown, no back
     "experience": <number 0-100>
   },
   "summary": "<2-3 sentence overall assessment>",
-  "foundKeywords": ["keyword1", "keyword2", ...],
-  "missingKeywords": ["keyword1", "keyword2", ...],
-  "partialKeywords": ["keyword1", "keyword2", ...],
-  "strengths": ["strength1", "strength2", "strength3", ...],
+  "foundKeywords": ["keyword1", "keyword2"],
+  "missingKeywords": ["keyword1", "keyword2"],
+  "partialKeywords": ["keyword1", "keyword2"],
+  "strengths": ["strength1", "strength2", "strength3"],
   "improvements": [
     {
       "priority": "high",
@@ -37,7 +42,7 @@ Respond ONLY with a valid JSON object in this exact format (no markdown, no back
       "tip": "specific actionable tip"
     }
   ],
-  "verdict": "Strong Match" | "Good Match" | "Partial Match" | "Weak Match"
+  "verdict": "Strong Match"
 }
 `;
 
@@ -62,7 +67,6 @@ Respond ONLY with a valid JSON object in this exact format (no markdown, no back
   const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
   if (!text) throw new Error('No response from Gemini');
 
-  // Clean and parse JSON
   const cleaned = text.replace(/```json|```/g, '').trim();
   return JSON.parse(cleaned);
 };
