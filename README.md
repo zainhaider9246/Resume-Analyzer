@@ -6,9 +6,8 @@ An AI-powered resume analyzer built with **React** and **Google Gemini API**. Up
 
 ## 🚀 Live Demo
 
-> *(Add your Netlify link here)*
+(https://resumeanalsis.netlify.app/)
 
----
 
 ## ✨ Features
 
