@@ -1,5 +1,4 @@
-const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent';export const analyzeResume = async (resumeText, jobDescription, apiKey) => {
-  const prompt = `
+const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent';  const prompt = `
 You are an expert ATS (Applicant Tracking System) resume analyzer and career coach.
 
 Analyze the following resume against the job description and provide a detailed analysis.
