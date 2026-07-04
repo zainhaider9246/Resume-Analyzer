@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ra-primary: #6366f1;
+  --ra-primary-dark: #4f46e5;
+  --ra-success: #22c55e;
+  --ra-warning: #f59e0b;
+  --ra-danger: #ef4444;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: #f8fafc;
+  min-height: 100vh;
+}
+
+/* Score Ring */
+.score-ring {
+  position: relative;
+  width: 140px;
+  height: 140px;
+}
+
+.score-ring svg {
+  transform: rotate(-90deg);
+}
+
+.score-ring .score-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+/* Upload Zone */
+.upload-zone {
+  border: 2px dashed #c7d2fe;
+  border-radius: 16px;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.upload-zone:hover,
+.upload-zone.dragover {
+  border-color: var(--ra-primary);
+  background: #eef2ff;
+}
+
+/* Keyword pill */
+.keyword-found {
+  background: #dcfce7;
+  color: #15803d;
+  border: 1px solid #bbf7d0;
+}
+
+.keyword-missing {
+  background: #fee2e2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+}
+
+.keyword-partial {
+  background: #fef9c3;
+  color: #a16207;
+  border: 1px solid #fef08a;
+}
+
+/* Tip cards */
+.tip-card {
+  border-left: 4px solid var(--ra-primary);
+  background: white;
+  border-radius: 0 12px 12px 0;
+  transition: transform 0.2s;
+}
+
+.tip-card:hover {
+  transform: translateX(4px);
+}
+
+/* Navbar */
+.ra-navbar {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-thumb { background: var(--ra-primary); border-radius: 3px; }
+
+/* Animations */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.4s ease forwards;
+}
+
+@keyframes pulse-ring {
+  0% { stroke-dashoffset: 440; }
+  100% { stroke-dashoffset: var(--offset); }
+}
+
+.score-circle {
+  animation: pulse-ring 1.5s ease forwards;
+}
